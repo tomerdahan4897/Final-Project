@@ -1,0 +1,14 @@
+.mainPage{
+    width: 1000px;
+    margin: 0 auto;
+    min-height: calc(100vh - 50px);
+    margin-top: 20px; 
+    margin-bottom: 20px;
+     
+}
+
+@media (max-width: 1000px) {
+    .mainPage{
+        width: 90vw;
+    }
+}

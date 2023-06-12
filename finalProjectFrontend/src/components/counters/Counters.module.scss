@@ -1,0 +1,105 @@
+.counters{
+    width: 90%;
+    height: 250px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content:space-evenly;
+    align-items: stretch;
+    margin-bottom: 60px;
+    border: 2px solid black;
+    margin-bottom: 60px;
+    box-shadow: 10px 10px 10px 10px rgba($color: #a4a4a4, $alpha: 1.0);
+}
+
+.customersDiv, .yearsDiv, .storesDiv {
+    border-right: 1px solid black;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+//counters animations
+
+//customers animation
+@property --num {
+    syntax: "<integer>";
+    initial-value: 20000;
+    inherits: false;
+}
+
+.customersCounter {
+    animation: custCounter 5s alternate ease-out;
+    counter-reset: num var(--num);
+    font: 800 40px system-ui;
+}
+
+.customersCounter::after {
+    content: counter(num);
+}
+
+@keyframes custCounter {
+    from {
+        --num: 0;
+    }
+
+    to {
+        --num: 20000;
+    }
+}
+
+
+//years animation
+@property --num1 {
+    syntax: "<integer>";
+    initial-value: 20;
+    inherits: false;
+}
+
+.yearsCounter {
+    animation: yearsCounter 5s alternate ease-out;
+    counter-reset: num1 var(--num1);
+    font: 800 40px system-ui;
+}
+
+.yearsCounter::after {
+    content: counter(num1);
+}
+
+@keyframes yearsCounter {
+    from {
+        --num1: 0;
+    }
+
+    to {
+        --num1: 20;
+    }
+}
+
+//years animation
+@property --num2 {
+    syntax: "<integer>";
+    initial-value: 12;
+    inherits: false;
+}
+
+.shopsCounter {
+    animation: shopsCounter 5s alternate ease-out;
+    counter-reset: num2 var(--num2);
+    font: 800 40px system-ui;
+}
+
+.shopsCounter::after {
+    content: counter(num2);
+}
+
+@keyframes shopsCounter {
+    from {
+        --num2: 0;
+    }
+
+    to {
+        --num2: 12;
+    }
+}
+

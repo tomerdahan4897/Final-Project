@@ -1,0 +1,9 @@
+.facebookLink, .instagramLink, .youtubeLink{
+    color:#fcd423;
+    transition: all 0.3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.15);
+        color: #adbf5a !important;
+    }
+}

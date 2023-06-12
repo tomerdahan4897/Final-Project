@@ -1,0 +1,19 @@
+.mainBox{
+    margin-right: 50px;
+}
+.link {
+    text-decoration: none;
+    color: #adbf5a;
+    text-align: left;
+    font-size: 1.2rem;
+
+    &:hover {
+        color: #fcd423;
+    }
+}
+
+@media (max-width:1100px){
+    .mainBox{
+        margin-right: 0px;
+    }
+}

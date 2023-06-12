@@ -1,0 +1,12 @@
+POST http://localhost:5001/api/users/signup
+Content-Type: application/json
+
+{
+    "firstName":"Tomer",
+    "lastName":"Dahan",
+    "email":"tomer@gmail.com",
+    "password": "TomerDahan4897!!",
+    "phone": "0547002548",
+        "street": "Moreno 10",
+        "city": "Afula"
+}

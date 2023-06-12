@@ -1,0 +1,51 @@
+.mainAboutBox {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../assets/aboutPagePics/aboutCoverPic.jpg');
+    width: 100vw;
+    height: 500px;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 30px 20px rgba(0, 0, 0, 0.4);
+    margin: 30px 0px;
+}
+
+.titles {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding-top: 20px;
+
+}
+
+.firstTitle{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+.secondTitle{
+    grid-row: 2/3;
+    grid-column: 3/4;
+}
+
+.firstTitle, .secondTitle {
+    font-size: 2.7rem;
+    text-align: center;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    color: #fcd423;
+    letter-spacing: 2px;
+}
+
+.mainContent{
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    color: rgb(220, 220, 220);
+    font-size: 1.2rem;
+
+}
+
+@media (max-width:1400px) {
+    .mainAboutBox {
+        overflow: auto;
+    }
+
+}

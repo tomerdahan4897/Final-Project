@@ -1,0 +1,33 @@
+.splitBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.formBox{
+    flex-basis: 75%;
+}
+
+.secondFormBox{
+    width: 75%;
+}
+
+.picBox{
+    flex-basis: 25%;
+    img {
+        width: 150%;
+        height: 600px;
+    }
+}
+
+@media (max-width:800px) {
+    .picBox {
+        display: none;
+    }
+
+    .secondFormBox {
+        width: 100%;
+    }
+}

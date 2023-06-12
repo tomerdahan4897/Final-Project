@@ -1,0 +1,61 @@
+.mainFooter{
+    width: 100%;
+    height: 350px;
+    background-color: #6a3c2c;
+    color:white;
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+    grid-template-columns: repeat(16,1fr); 
+    gap: 20px;
+    border-top: 2px solid black;
+}
+
+.socialLinks{
+    grid-row: 1/2;
+    grid-column: 1/17;
+    margin-top: 10px;
+}
+
+.footerAbout{
+    grid-row: 2/4;
+    grid-column: 1/4;
+}
+
+.shopFooter{
+    grid-row: 2/4;
+    grid-column: 4/7;
+}
+
+.footerContactUs{
+    margin-top: 30px;
+    grid-row: 2/4;
+    grid-column: 7/17;
+}
+
+.copyR{
+    grid-row: 4/5;
+    grid-column: 1/17;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+@media(max-width:1100px) {
+    .mainFooter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+        }
+
+    .copyR {
+        margin-top: 30px;
+    }
+}
+@media(max-width:700px) {
+    .copyR {
+        margin-top: 0px;
+    }
+}

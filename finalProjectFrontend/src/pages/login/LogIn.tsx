@@ -2,15 +2,14 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
 import { LogInType } from "../../@types";
 import userService from "../../services/user.service";
 import { Formik, ErrorMessage, Field } from "formik";
 import { logInValidationSchema } from "../../validations/logInValidation";
 import userStore from "../../stores/userStore";
+import css from "./LogIn.module.scss";
 
 function Login() {
-  const nav = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
@@ -37,16 +36,15 @@ function Login() {
       .login(email, password)
       .then((res) => {
         console.log("res", res);
-        const token = res.accessToken;
-        const email = res.email;
-        const firstName = res.firstName;
-        loginInStore(firstName, email, token);
+        const { token, email, firstName, roles } = res;
+        loginInStore(firstName, email, token, roles[0]);
         console.log("connected");
-        nav("/");
       })
       .catch((e) => {
-        console.log(e);
-        setErrorMessage(JSON.stringify(e.response.data));
+        console.log("e", e);
+
+        const errorMessage = JSON.stringify(e.response?.data.message) || "";
+        setErrorMessage(errorMessage.replace(/\"/g, ""));
       })
       .finally(() => {
         setIsLoading(false);
@@ -55,7 +53,6 @@ function Login() {
 
   return (
     <>
-      {errorMessage && <div>{errorMessage}</div>}
       <Button variant="outline-yellow" onClick={openModal}>
         Log In
       </Button>
@@ -117,6 +114,12 @@ function Login() {
                     Login
                   </Button>
                 </div>
+                {errorMessage && (
+                  <div className={css.errorMessageDiv}>
+                    {errorMessage} <br />
+                    <span className="text-brown">Try Again!</span>
+                  </div>
+                )}
               </Form>
             )}
           </Formik>

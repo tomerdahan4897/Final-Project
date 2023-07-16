@@ -2,7 +2,6 @@ import axios from "axios";
 import { Product } from "../@types";
 
 const baseURL = "http://localhost:5001/api";
-let products: Product[];
 
 export const getAllProducts = async () => {
   const fruitsData = await getFruitsData();

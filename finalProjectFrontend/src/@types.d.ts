@@ -8,7 +8,26 @@ export type Product = {
   category: Category;
   imgCode: string;
   description?: string;
-  price: string;
+  price: number;
+};
+
+export type Role = "USER" | "ADMIN" | "MODERATOR" | null;
+
+export type AddProductType = {
+  title: string;
+  category: string;
+  imgCode: string;
+  description?: string;
+  price: number;
+};
+
+export type UpdatedProductType = {
+  _id: string;
+  title: string;
+  category: Category;
+  imgCode: string;
+  description: string;
+  price: number;
 };
 
 export type ProductForCart = {
@@ -20,7 +39,7 @@ export type StoreProps = {
   products: Product[];
 };
 
-export type Category = "fruits" | "vegetables" | "nuts";
+export type Category = "fruits" | "vegetables" | "nuts" | "";
 
 export type SignUpType = {
   firstName: string;
@@ -56,4 +75,12 @@ export type LogInType = {
 export type CounterProps = {
   quantity?: number;
   onChange: (count: number) => void;
+};
+
+type ProductsStoreType = {
+  products: Product[];
+  setProducts: (products: Product[]) => void;
+  addProduct: (product: Product) => void;
+  removeProduct: (id: string) => void;
+  editProduct: (product: Product) => void;
 };

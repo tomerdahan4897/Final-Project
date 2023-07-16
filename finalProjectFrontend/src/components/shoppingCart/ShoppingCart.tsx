@@ -7,8 +7,15 @@ import { ProductForCart } from "../../@types";
 import productForOrderService from "../../services/productsOrder.service";
 import { useNavigate } from "react-router-dom";
 import userStore from "../../stores/userStore";
+import {
+  chooseProducts,
+  confirmOrder,
+  pleaseLogIn,
+} from "../../services/swals";
+import Login from "../../pages/login/LogIn";
 
 const ShoppingCart = () => {
+  const isLoggedIn = userStore((state) => state.isLoggedIn);
   const nav = useNavigate();
   const products = useCartStore((state) => {
     return state.products;
@@ -36,27 +43,38 @@ const ShoppingCart = () => {
   const confirmOrederHandler = (products: ProductForCart[]) => {
     const copyOfP = [...products];
     setIsLoading(true);
-
-    const isLoggedIn = userStore((state) => state.isLoggedIn);
-    if (isLoggedIn) {
+    if (isLoggedIn && totalPrice > 0) {
       const userId = JSON.parse(localStorage.getItem("user")!).id;
-      for (let p of copyOfP) {
-        productForOrderService
-          .newProductForOrder(userId, p.product._id, p.quantity)
-          .then((res) => {
-            //swal
-            console.log(res);
-          })
-          .catch((e) => {
-            console.log(e);
-            setErrorMessage(JSON.stringify(e.response.data));
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
+      const productsForOrder = copyOfP.map((p) => ({
+        id: p.product._id,
+        price: p.product.price,
+        quantity: p.quantity,
+      }));
+      productForOrderService
+        .newProductForOrder(userId, productsForOrder)
+        .then((res) => {
+          confirmOrder();
+          console.log(res);
+          setTimeout(() => {
+            nav("/");
+          }, 1500);
+        })
+        .catch((e) => {
+          console.log(e);
+          setErrorMessage(JSON.stringify(e.response.data));
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     } else {
-      nav("/login");
+      if (!isLoggedIn) {
+        pleaseLogIn();
+      } else {
+        chooseProducts();
+        setTimeout(() => {
+          nav("/shop");
+        }, 1500);
+      }
     }
   };
 
@@ -78,7 +96,7 @@ const ShoppingCart = () => {
           </div>
           <div
             className="btn btn-orange mt-3"
-            /*  onClick={confirmOrederHandler(products)} */
+            onClick={() => confirmOrederHandler(products)}
           >
             Confirm Order
           </div>

@@ -8,7 +8,7 @@ const validateSignIn: RequestHandler = (req, res, next) => {
 
   if (error) {
     return res.status(400).json({
-      message: "Validation Failed",
+      message: "Please Enter Valid Password",
       errors: error.details.map((ed) => ed.message),
     });
   }

@@ -8,7 +8,7 @@ import { useProductsStore } from "./stores/productsStore";
 import { getAllProducts } from "./services/allProducts";
 
 function App() {
-  const setProducts = useProductsStore((state) => state.setProducts);
+  const setProducts = useProductsStore((state: any) => state.setProducts);
   const importData = async () => {
     const productsData = await getAllProducts();
     setProducts(productsData);
@@ -16,11 +16,17 @@ function App() {
 
   const userStorage = JSON.parse(localStorage.getItem("user")!);
   const login = userStore((state) => state.login);
+
   //auto login if the user was connected before
   useEffect(() => {
     importData();
     if (userStorage) {
-      login(userStorage.firstName, userStorage.email, userStorage.token);
+      login(
+        userStorage.firstName,
+        userStorage.email,
+        userStorage.token,
+        userStorage.role
+      );
     }
   }, []);
 

@@ -5,7 +5,7 @@ const validateSignIn = (req, res, next) => {
     const { error } = userSignInSchema.validate(body);
     if (error) {
         return res.status(400).json({
-            message: "Validation Failed",
+            message: "Please Enter Valid Password",
             errors: error.details.map((ed) => ed.message),
         });
     }

@@ -11,26 +11,15 @@ import { Router } from "express";
 import _ from "underscore";
 import { ProductsOrder } from "../db/models/productsOrder.model.js";
 const router = Router();
-const calcTotalPrice = (products) => {
-    let totalPrice = 0;
-    products.forEach((product) => {
-        totalPrice += product.price * product.quantity;
-    });
-    return totalPrice;
-};
-router.post("/addProductForOrder", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/addOrder", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = _.pick(req.body, "userId", "cart");
-    const totalPrice = calcTotalPrice(body.cart);
-    const productsOrder = new ProductsOrder(Object.assign(Object.assign({}, body), { totalPrice }));
+    const newOrder = new ProductsOrder(body);
     try {
-        productsOrder.save();
-        return res.json({
-            message: "order of product saved",
-            id: productsOrder._id,
-        });
+        newContactMessage.save();
+        return res.json({ message: "message saved", id: newContactMessage._id });
     }
     catch (e) {
         res.status(500).json({ message: "server db error: " + e });
     }
 }));
-export { router as ProductsOrderRouter };
+export { router as ContactMessageRouter };

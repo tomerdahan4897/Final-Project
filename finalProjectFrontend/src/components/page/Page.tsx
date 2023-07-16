@@ -6,11 +6,11 @@ import NotFound from "../../pages/notFound/NotFound";
 import Shop from "../../pages/shop/Shop";
 import SignUp from "../../pages/signup/SignUp";
 import css from "./Page.module.scss";
-import Fruits from "../../services/Fruits";
-import Vegetables from "../../services/Vegetables";
-import Nuts from "../../services/Nuts";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
 import ProductDetails from "../../pages/productDetails/ProductDetails";
+import FruitShop from "../fruitShop/FruitShop";
+import VegeShop from "../vegeShop/VegeShop";
+import NutsShop from "../nutsShop/NutsShop";
 
 const Page = () => {
   return (
@@ -19,9 +19,9 @@ const Page = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/shop/vegetables" element={<Vegetables />} />
-        <Route path="/shop/fruits" element={<Fruits />} />
-        <Route path="/shop/nuts" element={<Nuts />} />
+        <Route path="/shop/vegetables" element={<VegeShop />} />
+        <Route path="/shop/fruits" element={<FruitShop />} />
+        <Route path="/shop/nuts" element={<NutsShop />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/shoppingcart" element={<ShoppingCart />} />

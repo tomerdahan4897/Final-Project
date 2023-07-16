@@ -17,7 +17,6 @@ export const ProductsForSearch = ({
       `/src/assets/storePics/${category}/${imgCode}.jpg`,
       import.meta.url
     ).href;
-    console.log(image);
 
     return image;
   };

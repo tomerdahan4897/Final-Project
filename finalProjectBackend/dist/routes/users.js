@@ -38,12 +38,12 @@ router.post("/login", validateSignIn, (req, res) => __awaiter(void 0, void 0, vo
     try {
         const user = yield (yield User.findOne({ email: req.body.email })).populate("roles");
         if (!user) {
-            return res.status(401).json({ message: "user not found" });
+            return res.status(401).json({ message: "User Not Found" });
         }
         //check if the password match the email
         const isPasswordValid = yield bycrypt.compare(req.body.password, user.password);
         if (!isPasswordValid) {
-            return res.status(401).json({ message: "inncorrect password" });
+            return res.status(401).json({ message: "Inncorrect Password" });
         }
         /* token */
         const token = jwt.sign({ id: user._id }, userConfig.secret, {
@@ -52,7 +52,7 @@ router.post("/login", validateSignIn, (req, res) => __awaiter(void 0, void 0, vo
         //check the roles of the user
         const authorities = [];
         for (let i = 0; i < user.roles.length; i++) {
-            authorities.push(`ROLE_${user.roles[i].name.toUpperCase()}`);
+            authorities.push(user.roles[i].name.toUpperCase());
         }
         return res.status(200).json({
             id: user._id,

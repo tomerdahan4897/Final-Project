@@ -1,6 +1,4 @@
 import axios from "axios";
-import userStore from "../stores/userStore";
-
 const baseURL = "http://localhost:5001/api/users";
 
 const signup = async (
@@ -29,13 +27,14 @@ const login = async (email: string, password: string) => {
     const firstName = res.data.firstName;
     const email = res.data.email;
     const id = res.data.id;
+    const role = res.data.roles[0];
     console.log(res.data);
 
     if (token) {
       localStorage.setItem("token", token);
       localStorage.setItem(
         "user",
-        JSON.stringify({ email, firstName, token, id })
+        JSON.stringify({ email, firstName, token, id, role })
       );
     }
     return res.data;

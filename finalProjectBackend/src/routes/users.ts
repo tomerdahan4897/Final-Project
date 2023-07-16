@@ -44,7 +44,7 @@ router.post("/login", validateSignIn, async (req, res) => {
       await User.findOne({ email: req.body.email })
     ).populate<{ roles: Array<typeof Role> }>("roles");
     if (!user) {
-      return res.status(401).json({ message: "user not found" });
+      return res.status(401).json({ message: "User Not Found" });
     }
     //check if the password match the email
     const isPasswordValid = await bycrypt.compare(
@@ -53,7 +53,7 @@ router.post("/login", validateSignIn, async (req, res) => {
     );
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "inncorrect password" });
+      return res.status(401).json({ message: "Inncorrect Password" });
     }
 
     /* token */
@@ -64,7 +64,7 @@ router.post("/login", validateSignIn, async (req, res) => {
     //check the roles of the user
     const authorities = [];
     for (let i = 0; i < user.roles.length; i++) {
-      authorities.push(`ROLE_${user.roles[i].name.toUpperCase()}`);
+      authorities.push(user.roles[i].name.toUpperCase());
     }
 
     return res.status(200).json({

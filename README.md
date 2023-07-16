@@ -41,7 +41,9 @@ To run the project, use the following command in the terminal:
 npm start or yarn start.
 
 For admin acts login with these details:
+
 email: tomer.dahan10@gmail.com
+
 password: Tomer4897!!!
 
 
